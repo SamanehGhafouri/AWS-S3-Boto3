@@ -17,10 +17,20 @@ def create_bucket(bucket_prefix, s3_connection):
     return bucket_name, bucket_response
 
 
-if __name__ == '__main__':
-    first_bucket_name, first_response = create_bucket(bucket_prefix='firstpythonbucket', s3_connection=s3_resource.meta.client)
-    print(first_response)
-    print('-----------------------------------------------------------')
+def create_bucket_second_way(name, s3_connection):
+    bucket_name = name
+    bucket_response = s3_connection.create_bucket(Bucket=bucket_name)
+    print(bucket_name)
+    return bucket_name, bucket_response
 
-    second_bucket_name, second_response = create_bucket(bucket_prefix='secondpythonbucket', s3_connection=s3_resource)
-    print(second_response)
+
+if __name__ == '__main__':
+    # first_bucket_name, first_response = create_bucket(bucket_prefix='firstpythonbucket', s3_connection=s3_resource.meta.client)
+    # print(first_response)
+    # print('-----------------------------------------------------------')
+    #
+    # second_bucket_name, second_response = create_bucket(bucket_prefix='secondpythonbucket', s3_connection=s3_resource)
+    # print(second_response)
+
+    my_bucket_name, my_bucket_response = create_bucket_second_way('first-bucket-boto3', s3_connection=s3_resource.meta.client)
+    print(my_bucket_response)
