@@ -42,7 +42,10 @@ if __name__ == '__main__':
     # my_bucket_name, my_bucket_response = create_bucket_second_way('first-bucket-boto3', s3_connection=s3_resource.meta.client)
     # print(my_bucket_response)
 
-    first_file_name = create_temp_file(300, 'firstfile.txt', 'f')
+    # first_file_name = create_temp_file(300, 'firstfile.txt', 'f')
     # Creating bucket and object instances
-    first_bucket = s3_resource.Bucket(name='first-bucket-boto3')
-    first_object = s3_resource.Object(bucket_name='first-bucket-boto3', key=first_file_name)
+    # first_bucket = s3_resource.Bucket(name='first-bucket-boto3')
+    # first_object = s3_resource.Object(bucket_name='first-bucket-boto3', key=first_file_name)
+
+    # upload file client version
+    s3_resource.meta.client.upload_file(Filename='308735firstfile.txt', Bucket='first-bucket-boto3', Key='308735firstfile.txt')
