@@ -32,6 +32,15 @@ def create_temp_file(size, file_name, file_content):
     return random_file_name
 
 
+# copy an object between buckets
+def copy_to_bucket(bucket_from_name, bucket_to_name, file_name):
+    copy_source = {
+        'Bucket': bucket_from_name,
+        'Key': file_name
+    }
+    s3_resource.Object(bucket_to_name, file_name).copy(copy_source)
+
+
 if __name__ == '__main__':
     # first_bucket_name, first_response = create_bucket(bucket_prefix='firstpythonbucket', s3_connection=s3_resource.meta.client)
     # print(first_response)
@@ -55,5 +64,6 @@ if __name__ == '__main__':
     new_file = s3_resource.Object('first-bucket-boto3', '308735firstfile.txt').download_file('308735firstfile.txt')
     with open(new_file, 'r') as f:
         file_reader = csv.reader(f)
+
 
 
