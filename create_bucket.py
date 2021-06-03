@@ -1,5 +1,6 @@
 import boto3
 import uuid
+import csv
 
 s3_resource = boto3.resource('s3')
 
@@ -48,4 +49,11 @@ if __name__ == '__main__':
     # first_object = s3_resource.Object(bucket_name='first-bucket-boto3', key=first_file_name)
 
     # upload file client version
-    s3_resource.meta.client.upload_file(Filename='308735firstfile.txt', Bucket='first-bucket-boto3', Key='308735firstfile.txt')
+    # s3_resource.meta.client.upload_file(Filename='308735firstfile.txt', Bucket='first-bucket-boto3', Key='308735firstfile.txt')
+
+    # download file Object version
+    new_file = s3_resource.Object('first-bucket-boto3', '308735firstfile.txt').download_file('308735firstfile.txt')
+    with open(new_file, 'r') as f:
+        file_reader = csv.reader(f)
+
+
