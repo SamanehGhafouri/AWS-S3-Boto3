@@ -65,5 +65,7 @@ if __name__ == '__main__':
     with open(new_file, 'r') as f:
         file_reader = csv.reader(f)
 
+    s3_resource.Object('first-bucket-boto3', '308735firstfile.txt').delete()
+
 
 
